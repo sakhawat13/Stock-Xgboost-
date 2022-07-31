@@ -125,7 +125,8 @@ if submit:
 #       print(dfi)
 #       dfi = dfi[dfi['VolAvgNDays'].notna()]
       dfin = dfi.drop(["LP"],axis=1)
-      st.write(dfin.shape)
+      dfin.reset_index(inplace=True)
+      st.write(dfin)
       pred2 = clf2.predict(dfin)
       
 
