@@ -120,7 +120,7 @@ if submit:
       dfi["LP"] = dfi["Close"].shift(-1)
       dfi["Change"] = ((dfi["Close"]-dfi["LP"])/dfi["LP"])
 #       dfi = dfi[dfi['VolAvgNDays'].notna()]
-      dfin = dfi.drop(["Code","Date"],axis=1)
+      dfin = dfi.drop(["Code"],axis=1)
       pred2 = clf.predict(dfin)
       
 
