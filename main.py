@@ -120,10 +120,11 @@ if submit:
       dfi["LP"] = dfi["Close"].shift(-1)
       dfi["Change"] = ((dfi["Close"]-dfi["LP"])/dfi["LP"])
       dfi = add_all_ta_features(dfi, open="Open", high="High", low="Low", close="Close", volume="Volume", fillna=True)
+      st.write(dfi)
 #       print(dfi)
 #       dfi = dfi[dfi['VolAvgNDays'].notna()]
 #       dfin = dfi.drop(["Code"],axis=1)
-      pred2 = clf2.predict(dfin)
+#       pred2 = clf2.predict(dfin)
       
 
       df4["LP"] = df4["Close"].shift(-1)
