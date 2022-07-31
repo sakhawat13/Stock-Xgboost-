@@ -10,4 +10,4 @@ scipy
 sklearn
 yfinance
 openpyxl
-ta-dev
+ta
