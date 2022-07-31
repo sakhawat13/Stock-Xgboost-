@@ -116,9 +116,11 @@ if submit:
       df4["VolAvgNDays"] = df4["Volume"].rolling(15).mean()
       df4 = df4[::-1]
       
-      dfi = add_all_ta_features(df8, open="Open", high="High", low="Low", close="Close", volume="Volume", fillna=True)
+      dfi = df8
       dfi["LP"] = dfi["Close"].shift(-1)
       dfi["Change"] = ((dfi["Close"]-dfi["LP"])/dfi["LP"])
+      dfi = add_all_ta_features(dfi, open="Open", high="High", low="Low", close="Close", volume="Volume", fillna=True)
+      print(dfi)
 #       dfi = dfi[dfi['VolAvgNDays'].notna()]
       dfin = dfi.drop(["Code"],axis=1)
       pred2 = clf.predict(dfin)
