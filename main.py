@@ -165,13 +165,13 @@ if submit:
             )
             jscode = JsCode("""
                         function(params) {
-                            if (params.data.pred === 1) {
+                            if (params.data.IndPred === 1) {
                                 return {
                                     'color': 'white',
                                     'backgroundColor': 'green'
                                 }
                             }
-                            if (params.data.pred === -1) {
+                            if (params.data.IndPred === -1) {
                                 return {
                                     'color': 'white',
                                     'backgroundColor': 'red'
