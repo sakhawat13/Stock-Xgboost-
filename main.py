@@ -123,7 +123,7 @@ if submit:
 #       print(dfi)
 #       dfi = dfi[dfi['VolAvgNDays'].notna()]
 #       dfin = dfi.drop(["Code"],axis=1)
-      pred2 = clf.predict(dfin)
+      pred2 = clf2.predict(dfin)
       
 
       df4["LP"] = df4["Close"].shift(-1)
