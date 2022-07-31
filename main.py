@@ -111,10 +111,12 @@ if submit:
                                         country='Bangladesh',
                                         from_date="01/01/2007",
                                         to_date= day)
+      
+      df8 = df4[["Close","Open","High","Low","Volume"]]
       df4["VolAvgNDays"] = df4["Volume"].rolling(15).mean()
       df4 = df4[::-1]
       
-      dfi = add_all_ta_features(df4, open="Open", high="High", low="Low", close="Price", volume="Vol.", fillna=True)
+      dfi = add_all_ta_features(df8, open="Open", high="High", low="Low", close="Close", volume="Volume", fillna=True)
       dfi["LP"] = dfi["Close"].shift(-1)
       dfi["Change"] = ((dfi["Close"]-dfi["LP"])/dfi["LP"])
       dfi = dfi[dfi['VolAvgNDays'].notna()]
