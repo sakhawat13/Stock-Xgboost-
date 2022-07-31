@@ -10,4 +10,4 @@ scipy
 sklearn
 yfinance
 openpyxl
-ta
+ta==0.10.0
