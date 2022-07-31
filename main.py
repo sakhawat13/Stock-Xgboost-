@@ -124,10 +124,11 @@ if submit:
 #       st.write(dfi)
 #       print(dfi)
 #       dfi = dfi[dfi['VolAvgNDays'].notna()]
-      dfin = dfi.drop(["LP"],axis=1)
-      dfin.reset_index(inplace=True)
-      st.write(dfin)
-      pred2 = clf2.predict(dfin)
+      dfi.reset_index(inplace=True)
+      dfi = dfi.drop(["LP","Date"],axis=1)
+      
+      st.write(dfi)
+      pred2 = clf2.predict(dfi)
       
 
       df4["LP"] = df4["Close"].shift(-1)
