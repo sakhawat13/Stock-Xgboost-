@@ -128,20 +128,20 @@ if submit:
       dfi = dfi.dropna()
       dfi2 = dfi.drop(["LP","Date"],axis=1)
       
-      st.write(dfi)
+#       st.write(dfi)
       
       pred2 = clf2.predict(dfi2)
       dfi["IndPred"] = pred2
       dfi["Name"] = s
       
 
-      df4["LP"] = df4["Close"].shift(-1)
-      df4["Change"] = ((df4["Close"]-df4["LP"])/df4["LP"])
-      df4 = df4[df4['VolAvgNDays'].notna()]
-      pred1 = clf.predict(df4[["Close","Volume","VolAvgNDays","Change"]])
-      df4["pred"] = pred1
+#       df4["LP"] = df4["Close"].shift(-1)
+#       df4["Change"] = ((df4["Close"]-df4["LP"])/df4["LP"])
+#       df4 = df4[df4['VolAvgNDays'].notna()]
+#       pred1 = clf.predict(df4[["Close","Volume","VolAvgNDays","Change"]])
+#       df4["pred"] = pred1
 #       df4["Indicator_pred"] = pred2
-      df4["Name"] = s
+#       df4["Name"] = s
       
       if dfi.shape[0] < num_day:
             st.write("Sorry "+ str(num_day) + " days of data for this company isnt available")
