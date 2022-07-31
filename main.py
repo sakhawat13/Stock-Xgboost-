@@ -119,7 +119,7 @@ if submit:
       dfi = add_all_ta_features(df8, open="Open", high="High", low="Low", close="Close", volume="Volume", fillna=True)
       dfi["LP"] = dfi["Close"].shift(-1)
       dfi["Change"] = ((dfi["Close"]-dfi["LP"])/dfi["LP"])
-      dfi = dfi[dfi['VolAvgNDays'].notna()]
+#       dfi = dfi[dfi['VolAvgNDays'].notna()]
       dfin = df.drop(["Code","Date"],axis=1)
       pred2 = clf.predict(dfin)
       
