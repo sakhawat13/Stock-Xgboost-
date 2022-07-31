@@ -147,7 +147,7 @@ if submit:
             st.write("Sorry "+ str(num_day) + " days of data for this company isnt available")
       else:
           dfi = dfi[::-1]
-          dfi['pattern'] = dfi.groupby((df4.pred != df4.pred.shift()).cumsum()).cumcount()+1
+          dfi['pattern'] = dfi.groupby((dfi.IndPred != dfi.IndPred.shift()).cumsum()).cumcount()+1
           dfi = dfi[::-1]
           df5 = dfi.head(num_day)
           df5 = df5[["Name","IndPred","pattern","Open","High","Low","Close","Volume","Change"]]
