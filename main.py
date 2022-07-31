@@ -128,6 +128,7 @@ if submit:
       dfi = dfi.drop(["LP","Date"],axis=1)
       
       st.write(dfi)
+      dfi = dfi.dropna()
       pred2 = clf2.predict(dfi)
       
 
