@@ -125,11 +125,13 @@ if submit:
 #       print(dfi)
 #       dfi = dfi[dfi['VolAvgNDays'].notna()]
       dfi.reset_index(inplace=True)
-      dfi = dfi.drop(["LP","Date"],axis=1)
+      dfi = dfi.dropna()
+      dfi2 = dfi.drop(["LP","Date"],axis=1)
       
       st.write(dfi)
-      dfi = dfi.dropna()
-      pred2 = clf2.predict(dfi)
+      
+      pred2 = clf2.predict(dfi2)
+      dfi["IndPred"] = pred2
       
 
       df4["LP"] = df4["Close"].shift(-1)
@@ -137,16 +139,16 @@ if submit:
       df4 = df4[df4['VolAvgNDays'].notna()]
       pred1 = clf.predict(df4[["Close","Volume","VolAvgNDays","Change"]])
       df4["pred"] = pred1
-      df4["Indicator_pred"] = pred2
+#       df4["Indicator_pred"] = pred2
       df4["Name"] = s
       
-      if df4.shape[0] < num_day:
+      if dfi.shape[0] < num_day:
             st.write("Sorry "+ str(num_day) + " days of data for this company isnt available")
       else:
-          df4 = df4[::-1]
-          df4['pattern'] = df4.groupby((df4.pred != df4.pred.shift()).cumsum()).cumcount()+1
-          df4 = df4[::-1]
-          df5 = df4.head(num_day)
+          dfi = dfi[::-1]
+          dfi['pattern'] = dfi.groupby((df4.pred != df4.pred.shift()).cumsum()).cumcount()+1
+          dfi = dfi[::-1]
+          df5 = dfi.head(num_day)
           df5 = df5[["Name","pred","pattern","Open","High","Low","Close","Volume","Change","VolAvgNDays"]]
           df5.reset_index(inplace=True)
           merged = pd.concat([merged, df5], axis=0)
