@@ -116,7 +116,7 @@ if submit:
       df4["VolAvgNDays"] = df4["Volume"].rolling(15).mean()
       df4 = df4[::-1]
       
-      dfi = df8
+      dfi = df8[::-1]
       dfi["LP"] = dfi["Close"].shift(-1)
       dfi["Change"] = ((dfi["Close"]-dfi["LP"])/dfi["LP"])
       dfi = add_all_ta_features(dfi, open="Open", high="High", low="Low", close="Close", volume="Volume", fillna=True)
