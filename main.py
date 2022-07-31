@@ -114,12 +114,12 @@ if submit:
       df4["VolAvgNDays"] = df4["Volume"].rolling(15).mean()
       df4 = df4[::-1]
       
-#       dfi = add_all_ta_features(df4, open="Open", high="High", low="Low", close="Price", volume="Vol.", fillna=True)
-#       dfi["LP"] = dfi["Close"].shift(-1)
-#       dfi["Change"] = ((dfi["Close"]-dfi["LP"])/dfi["LP"])
-#       dfi = dfi[dfi['VolAvgNDays'].notna()]
-#       dfin = df.drop(["Code","Date"],axis=1)
-#       pred2 = clf.predict(dfin)
+      dfi = add_all_ta_features(df4, open="Open", high="High", low="Low", close="Price", volume="Vol.", fillna=True)
+      dfi["LP"] = dfi["Close"].shift(-1)
+      dfi["Change"] = ((dfi["Close"]-dfi["LP"])/dfi["LP"])
+      dfi = dfi[dfi['VolAvgNDays'].notna()]
+      dfin = df.drop(["Code","Date"],axis=1)
+      pred2 = clf.predict(dfin)
       
 
       df4["LP"] = df4["Close"].shift(-1)
@@ -127,7 +127,7 @@ if submit:
       df4 = df4[df4['VolAvgNDays'].notna()]
       pred1 = clf.predict(df4[["Close","Volume","VolAvgNDays","Change"]])
       df4["pred"] = pred1
-#       df4["Indicator_pred"] = pred2
+      df4["Indicator_pred"] = pred2
       df4["Name"] = s
       
       if df4.shape[0] < num_day:
