@@ -49,7 +49,7 @@ import investpy
 
 # In[6]:
 si = pd.read_excel('StockIndustry.xlsx', index_col=0)
-si = si.reset_index(inplace=True)
+si.reset_index(inplace=True)
 si_name = si.columns.values.tolist()
 
 stock_df = investpy.get_stocks_overview(country="Bangladesh", 
