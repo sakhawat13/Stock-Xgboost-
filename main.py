@@ -100,7 +100,7 @@ for index, item in enumerate(opt):
 st.write(opt)
 num_day = st.number_input('Number of days',1)
 
-
+invert = st.checkbox('Invert ')
 
 submit = st.button("Submit")
 
@@ -149,7 +149,16 @@ if submit:
       else:
           dfi = dfi[::-1]
           dfi['pattern'] = dfi.groupby((dfi.IndPred != dfi.IndPred.shift()).cumsum()).cumcount()+1
-          dfi = dfi[::-1]
+          dfstart = dfi[((dfi.IndPred != 1) & (dfi.IndPred.shift(-1) == 1)) | (dfi.IndpPred[0]== 1)]
+          dfend = dfi[((dfi.IndPred == 1) & (dfi.IndPred.shift(-1) != 1)) | (dfi.IndPred.iat[-1]==1)]
+          sks = dfstart ["Close"].tolist()
+          dfnew1 = pd.DataFrame()
+          dfnew1 ["end"] = dfend["Close"]
+          dfnew1 ["start"] = sks
+          dfnew1 ["Profit %"] = (((dfnew1["end"] - dfnew1["start"])/dfnew1["start"])*100).astype(int)
+          dfi = dfi.join(dfnew1)
+          if !invert :
+            dfi = dfi[::-1]
           df5 = dfi.head(num_day)
           df5 = df5[["Date","Name","IndPred","pattern","Open","High","Low","Close","Volume","Change"]]
           df5.reset_index(inplace=True)
