@@ -149,7 +149,7 @@ if submit:
       else:
           dfi = dfi[::-1]
           dfi['pattern'] = dfi.groupby((dfi.IndPred != dfi.IndPred.shift()).cumsum()).cumcount()+1
-          dfstart = dfi[((dfi.IndPred != 1) & (dfi.IndPred.shift(-1) == 1)) | (dfi.IndpPred[0]== 1)]
+          dfstart = dfi[((dfi.IndPred != 1) & (dfi.IndPred.shift(-1) == 1)) | (dfi.IndPred[0]== 1)]
           dfend = dfi[((dfi.IndPred == 1) & (dfi.IndPred.shift(-1) != 1)) | (dfi.IndPred.iat[-1]==1)]
           sks = dfstart ["Close"].tolist()
           dfnew1 = pd.DataFrame()
