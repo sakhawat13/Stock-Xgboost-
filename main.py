@@ -154,7 +154,7 @@ if submit:
           sks = dfstart ["Close"].tolist()
           dfnew1 = pd.DataFrame()
           dfnew1 ["end"] = dfend["Close"]
-          print(len(sk))
+          print(len(sks))
           print(dfnew1.shape)
           dfnew1 ["start"] = sks
           dfnew1 ["Profit %"] = (((dfnew1["end"] - dfnew1["start"])/dfnew1["start"])*100).astype(int)
