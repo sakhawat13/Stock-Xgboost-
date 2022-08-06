@@ -149,15 +149,15 @@ if submit:
       else:
           dfi = dfi[::-1]
           dfi['pattern'] = dfi.groupby((dfi.IndPred != dfi.IndPred.shift()).cumsum()).cumcount()+1
-          dfstart = dfi[((dfi.IndPred != 1) & (dfi.IndPred.shift(-1) == 1)) | (dfi.IndPred[0]== 1)]
+          dfstart = dfi[((dfi.IndPred != 1) & (dfi.IndPred.shift(-1) == 1)) | (dfi.IndPred.iat[0]== 1)]
           dfend = dfi[((dfi.IndPred == 1) & (dfi.IndPred.shift(-1) != 1)) | (dfi.IndPred.iat[-1]==1)]
           sks = dfstart ["Close"].tolist()
           dfnew1 = pd.DataFrame()
           dfnew1 ["end"] = dfend["Close"]
-          st.write(len(sks))
-          st.write(dfnew1.shape)
-          if len(sks) != dfnew1.shape[0]:
-            sks = np.append(sks, 1)
+#           st.write(len(sks))
+#           st.write(dfnew1.shape)
+#           if len(sks) != dfnew1.shape[0]:
+#             sks = np.append(sks, 1)
           dfnew1 ["start"] = sks
           dfnew1 ["Profit %"] = (((dfnew1["end"] - dfnew1["start"])/dfnew1["start"])*100).astype(int)
           dfi = dfi.join(dfnew1)
