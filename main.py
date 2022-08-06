@@ -157,7 +157,7 @@ if submit:
           dfnew1 ["start"] = sks
           dfnew1 ["Profit %"] = (((dfnew1["end"] - dfnew1["start"])/dfnew1["start"])*100).astype(int)
           dfi = dfi.join(dfnew1)
-          if !invert :
+          if invert == False :
             dfi = dfi[::-1]
           df5 = dfi.head(num_day)
           df5 = df5[["Date","Name","IndPred","pattern","Open","High","Low","Close","Volume","Change"]]
