@@ -154,10 +154,10 @@ if submit:
           sks = dfstart ["Close"].tolist()
           dfnew1 = pd.DataFrame()
           dfnew1 ["end"] = dfend["Close"]
-#           st.write(len(sks))
-#           st.write(dfnew1.shape)
-#           if len(sks) != dfnew1.shape[0]:
-#             sks = np.append(sks, 1)
+          st.write(len(sks))
+          st.write(dfnew1.shape)
+          if len(sks) != dfnew1.shape[0]:
+            sks = np.append(sks, 1)
           dfnew1 ["start"] = sks
           dfnew1 ["Profit %"] = (((dfnew1["end"] - dfnew1["start"])/dfnew1["start"])*100).astype(int)
           dfi = dfi.join(dfnew1)
