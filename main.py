@@ -154,15 +154,15 @@ if submit:
           sks = dfstart ["Close"].tolist()
           dfnew1 = pd.DataFrame()
           dfnew1 ["end"] = dfend["Close"]
-          print(len(sks))
-          print(dfnew1.shape)
+          st.write(len(sks))
+          st.write(dfnew1.shape)
           dfnew1 ["start"] = sks
           dfnew1 ["Profit %"] = (((dfnew1["end"] - dfnew1["start"])/dfnew1["start"])*100).astype(int)
           dfi = dfi.join(dfnew1)
           if invert == False :
             dfi = dfi[::-1]
           df5 = dfi.head(num_day)
-          df5 = df5[["Date","Name","IndPred","pattern","Open","High","Low","Close","Volume","Change"]]
+          df5 = df5[["Date","Name","IndPred","pattern","Profit %","Open","High","Low","Close","Volume","Change"]]
           df5.reset_index(inplace=True)
           merged = pd.concat([merged, df5], axis=0)
           def aggrid_interactive_table(df: pd.DataFrame):
