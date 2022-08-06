@@ -156,6 +156,8 @@ if submit:
           dfnew1 ["end"] = dfend["Close"]
           st.write(len(sks))
           st.write(dfnew1.shape)
+          if len(sks) != dfnew1.shape[0]:
+            sks = np.append(sks, np.nan)
           dfnew1 ["start"] = sks
           dfnew1 ["Profit %"] = (((dfnew1["end"] - dfnew1["start"])/dfnew1["start"])*100).astype(int)
           dfi = dfi.join(dfnew1)
