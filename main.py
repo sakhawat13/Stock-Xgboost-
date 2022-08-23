@@ -114,10 +114,13 @@ if submit:
                                         to_date= day)
       
       df8 = df4[["Close","Open","High","Low","Volume"]]
-      df4["VolAvgNDays"] = df4["Volume"].rolling(15).mean()
+      df4["VolAvgNDays"] = df4["Volume"].rolling(20).mean()
       df4 = df4[::-1]
       
-      dfi = df8[::-1]
+      #reverse order
+#       dfi = df8[::-1]
+      dfi = df8
+  
       dfi["LP"] = dfi["Close"].shift(-1)
       dfi["Change"] = ((dfi["Close"]-dfi["LP"])/dfi["LP"])
 #       dfi = dfi[::-1]
@@ -135,6 +138,9 @@ if submit:
       pred2 = clf2.predict(dfi2)
       dfi["IndPred"] = pred2
       dfi["Name"] = s
+      
+      #Reverse order
+      dfi = dfi[::-1]
       
 
 #       df4["LP"] = df4["Close"].shift(-1)
