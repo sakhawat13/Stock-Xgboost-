@@ -132,7 +132,7 @@ if submit:
       dfi.reset_index(inplace=True)
       dfi = dfi.dropna()
       dfi2 = dfi.drop(["LP","Date"],axis=1)
-      st.write(dfi2.head())
+#       st.write(dfi2.head())
 #       st.write(dfi)
       
       pred2 = clf2.predict(dfi2)
