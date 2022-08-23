@@ -212,6 +212,20 @@ if submit:
             )
             return selection
   selection = aggrid_interactive_table(df=merged)
+  @st.cache
+  def convert_df(df):
+     return df.to_csv().encode('utf-8')
+
+
+  csv = convert_df(merged)
+
+  st.download_button(
+     "Press to Download",
+     csv,
+     "file.csv",
+     "text/csv",
+     key='download-csv'
+  )
 #if selection:
 #st.write("You selected:")
 #st.json(selection["selected_rows"])
