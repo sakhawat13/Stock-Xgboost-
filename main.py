@@ -121,7 +121,7 @@ if submit:
 #       dfi = df8[::-1]
       dfi = df8
   
-      dfi["LP"] = dfi["Close"].shift(-1)
+      dfi["LP"] = dfi["Close"].shift(+1)
       dfi["Change"] = ((dfi["Close"]-dfi["LP"])/dfi["LP"])
 #       dfi = dfi[::-1]
       dfi = add_all_ta_features(dfi, open="Open", high="High", low="Low", close="Close", volume="Volume", fillna=True)
