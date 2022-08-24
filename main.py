@@ -26,7 +26,7 @@ filename = 'classifier_model.sav'
 clf = pickle.load(open(filename, 'rb'))
 
 
-clf2 = pickle.load(open('classifier_w_indicator_model_renewed.sav', 'rb'))
+clf2 = pickle.load(open('classifier_w_indicator_model_not_reversed.sav', 'rb'))
 # clf2 = pickle.load(open('classifier_w_indicator_model_reversed.sav', 'rb'))
 
 
@@ -119,8 +119,8 @@ if submit:
       df4 = df4[::-1]
       
       #reverse order
-#       dfi = df8[::-1]
-      dfi = df8
+      dfi = df8[::-1]
+#       dfi = df8
   
       dfi["LP"] = dfi["Close"].shift(-1)
       dfi["Change"] = ((dfi["Close"]-dfi["LP"])/dfi["LP"])
@@ -141,7 +141,7 @@ if submit:
       dfi["Name"] = s
       
       #Reverse order
-      dfi = dfi[::-1]
+#       dfi = dfi[::-1]
       
 
 #       df4["LP"] = df4["Close"].shift(-1)
