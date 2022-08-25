@@ -26,7 +26,7 @@ filename = 'classifier_model.sav'
 clf = pickle.load(open(filename, 'rb'))
 
 
-clf2 = pickle.load(open('classifier_w_indicator_model_test.sav', 'rb'))
+clf2 = pickle.load(open('classifier_w_indicator_model_hist_high_crossed.sav', 'rb'))
 # clf2 = pickle.load(open('classifier_w_indicator_model_reversed.sav', 'rb'))
 
 
@@ -72,14 +72,7 @@ def Hist_high (price_list):
     
     return hasCrossed
 
-def Changes (k_list):
-    new_list = list(())
-    for k,x in enumerate(k_list):
-        if(k <= len(k_list)-2):
-            if ((k_list[k] !=1) &  (k_list[k+1]!=1)):
-                k_list[k] = (k_list[k] - k_list[k+1])/k_list[k+1]
-    return k_list
-  
+
   
 # In[7]:
 
@@ -150,7 +143,7 @@ if submit:
       dfi = dfi[::-1]
       
       HistoricalHigh = Hist_high(list(dfi["Close"]))
-      HistoricalHigh = Changes(HistoricalHigh)
+      
       dfi["Historical High"] = HistoricalHigh
       
       dfi = dfi[::-1]
