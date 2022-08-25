@@ -66,7 +66,7 @@ def Hist_high (price_list):
         if high == p:
             IsHistHigh = 1
         else:
-            IsHistHigh = 0
+            IsHistHigh = p/high
         hist_high_list.append(high)
         hasCrossed.append(IsHistHigh)
     
