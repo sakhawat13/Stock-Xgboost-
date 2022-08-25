@@ -26,7 +26,7 @@ filename = 'classifier_model.sav'
 clf = pickle.load(open(filename, 'rb'))
 
 
-clf2 = pickle.load(open('classifier_w_indicator_model_hist_high.sav', 'rb'))
+clf2 = pickle.load(open('classifier_w_indicator_model_hist_high_crossed.sav', 'rb'))
 # clf2 = pickle.load(open('classifier_w_indicator_model_reversed.sav', 'rb'))
 
 
