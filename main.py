@@ -149,7 +149,7 @@ if submit:
       dfi["Change"] = ((dfi["Close"]-dfi["LP"])/dfi["LP"])
       dfi = dfi[::-1]
       
-      HistoricalHigh = Hist_high(list(df["Close"]))
+      HistoricalHigh = Hist_high(list(dfi["Close"]))
       HistoricalHigh = Changes(HistoricalHigh)
       dfi["Historical High"] = HistoricalHigh
       
