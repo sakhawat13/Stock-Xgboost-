@@ -60,12 +60,17 @@ stock_df = investpy.get_stocks_overview(country="Bangladesh",
 
 def Hist_high (price_list):
     hist_high_list = list(())
+    hasCrossed = list(())
     for i,p in enumerate(price_list):
         high = max(price_list[i:])
+        if high == p:
+            IsHistHigh = 1
+        else:
+            IsHistHigh = 0
         hist_high_list.append(high)
+        hasCrossed.append(IsHistHigh)
     
-    return hist_high_list
-
+    return hasCrossed
 
 
 # In[7]:
