@@ -26,7 +26,7 @@ filename = 'classifier_model.sav'
 clf = pickle.load(open(filename, 'rb'))
 
 
-clf2 = pickle.load(open('classifier_w_indicator_model_hist_high_crossed.sav', 'rb'))
+clf2 = pickle.load(open('classifier_w_indicator_model_hist_high_crossed_prcnt.sav', 'rb'))
 # clf2 = pickle.load(open('classifier_w_indicator_model_reversed.sav', 'rb'))
 
 
@@ -142,6 +142,9 @@ if submit:
       dfi = dfi[::-1]
       
       dfi["Historical High"] = Hist_high(list(dfi["Close"]))
+      ph = df["Historical High"].shift(-1)
+      dfi["Historical High"] =( dfi["Historical High"] - ph)/ph
+      dfi = dfi[dfi['Historical High'].notna()]
       dfi = dfi[::-1]
       dfi = add_all_ta_features(dfi, open="Open", high="High", low="Low", close="Close", volume="Volume", fillna=True)
       dfi = dfi[::-1]
