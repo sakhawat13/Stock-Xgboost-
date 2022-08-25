@@ -136,7 +136,7 @@ if submit:
       dfi["Change"] = ((dfi["Close"]-dfi["LP"])/dfi["LP"])
       dfi = dfi[::-1]
       
-      df["Historical High"] = Hist_high(list(df["Close"]))
+      dfi["Historical High"] = Hist_high(list(dfi["Close"]))
       dfi = dfi[::-1]
       dfi = add_all_ta_features(dfi, open="Open", high="High", low="Low", close="Close", volume="Volume", fillna=True)
       dfi = dfi[::-1]
