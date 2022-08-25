@@ -26,7 +26,7 @@ filename = 'classifier_model.sav'
 clf = pickle.load(open(filename, 'rb'))
 
 
-clf2 = pickle.load(open('classifier_w_indicator_model_ta_reversed.sav', 'rb'))
+clf2 = pickle.load(open('classifier_w_indicator_model_hist_high.sav', 'rb'))
 # clf2 = pickle.load(open('classifier_w_indicator_model_reversed.sav', 'rb'))
 
 
@@ -56,6 +56,16 @@ si_name = si.columns.values.tolist()
 stock_df = investpy.get_stocks_overview(country="Bangladesh", 
                         as_json=False, 
                         n_results=1000)
+
+
+def Hist_high (price_list):
+    hist_high_list = list(())
+    for i,p in enumerate(price_list):
+        high = max(price_list[i:])
+        hist_high_list.append(high)
+    
+    return hist_high_list
+
 
 
 # In[7]:
@@ -124,7 +134,9 @@ if submit:
   
       dfi["LP"] = dfi["Close"].shift(+1)
       dfi["Change"] = ((dfi["Close"]-dfi["LP"])/dfi["LP"])
-#       dfi = dfi[::-1]
+      dfi = dfi[::-1]
+      HistoricalHigh = Hist_high(list(df["Close"]))
+      df["Historical High"] = HistoricalHigh
       dfi = add_all_ta_features(dfi, open="Open", high="High", low="Low", close="Close", volume="Volume", fillna=True)
       dfi = dfi[::-1]
 #       st.write(dfi.shape)
