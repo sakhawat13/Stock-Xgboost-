@@ -142,7 +142,7 @@ if submit:
       dfi = dfi[::-1]
       
       dfi["Historical High"] = Hist_high(list(dfi["Close"]))
-      ph = df["Historical High"].shift(-1)
+      ph = dfi["Historical High"].shift(-1)
       dfi["Historical High"] =( dfi["Historical High"] - ph)/ph
       dfi = dfi[dfi['Historical High'].notna()]
       dfi = dfi[::-1]
