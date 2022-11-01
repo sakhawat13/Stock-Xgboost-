@@ -50,6 +50,8 @@ five = lastfive.strftime ("%d/%m/%Y")
 
 from io import StringIO
 
+stockdata = pd.DataFrame()
+
 file = st.file_uploader("Please choose a file")
 
 if file is not None:
@@ -61,9 +63,10 @@ if file is not None:
 #     st.write(bytes_data)
     
     df= pd.read_csv(file)
+    stockdata = df
 #     st.write(df)
 
-st.write(df)
+st.write(stockdata)
 
 
 # stockdata = df
