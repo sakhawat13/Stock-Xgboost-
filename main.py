@@ -22,6 +22,7 @@ from st_aggrid.shared import JsCode
 
 
 clf = open("Xgboost.sav",'rb')
+model1 = pickle.load(clf)
 
 
 # clf2 = pickle.load(open('classifier_w_indicator_model_hist_high_crossed.sav', 'rb'))
@@ -79,7 +80,7 @@ if submit:
     stockdata['Change %'] = stockdata['Change %'].str.rstrip('%').astype('float') / 100.0
     check = stockdata.drop(["Date"],axis=1)
     st.write(len(check.columns))
-    pred = clf.predict(check)
+    pred = model1.predict(check)
     stockdata["Prediction"] = pred
     st.write(stockdata)
     
