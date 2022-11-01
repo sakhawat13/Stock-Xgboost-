@@ -27,7 +27,12 @@ from st_aggrid.shared import JsCode
 
 
 model_xgb = xgb.XGBClassifier()
-model_xgb.load_model("model.json")
+
+
+model = st.checkbox('Specialized model')
+model_xgb.load_model("model_unspecialized.json")
+if model:
+    model_xgb.load_model("model.json")
 # clf2 = pickle.load(open('classifier_w_indicator_model_reversed.sav', 'rb'))
 
 
