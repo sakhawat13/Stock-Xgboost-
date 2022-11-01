@@ -22,12 +22,10 @@ from st_aggrid.shared import JsCode
 
 
 
-with open('Xgboost.sav', 'rb') as fp:
-    
-    model1 = pickle.load(fp)
 
 
-# clf2 = pickle.load(open('classifier_w_indicator_model_hist_high_crossed.sav', 'rb'))
+
+model1 = pickle.load(open('Xgboost.sav', 'rb'))
 # clf2 = pickle.load(open('classifier_w_indicator_model_reversed.sav', 'rb'))
 
 
