@@ -87,12 +87,13 @@ if submit:
     stockdata["Vol."]=stockdata['Vol.'].replace({'K': '*1e3', 'M': '*1e6', '-':'-1'}, regex=True).map(pd.eval).astype(int)
     stockdata = stockdata[::-1]
     stockdata = add_all_ta_features(stockdata, open="Open", high="High", low="Low", close="Price", volume="Vol.", fillna=True)
-    stockdata = stockdata[::-1]  
+      
     stockdata['Change %'] = stockdata['Change %'].str.rstrip('%').astype('float') / 100.0
     check = stockdata.drop(["Date"],axis=1)
     st.write(len(check.columns))
     pred = model_xgb.predict(check)
     stockdata["Prediction"] = pred
+    stockdata = stockdata[::-1]
     sts = stockdata[["Date","Price","Prediction"]]
 #     st.write(stockdata)
     
