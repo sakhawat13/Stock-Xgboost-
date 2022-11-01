@@ -132,6 +132,8 @@ if submit:
             df,
             enable_enterprise_modules=True,
             gridOptions=gridOptions,
+            height=500,
+            width="100%",
 
 
             theme="alpine",
