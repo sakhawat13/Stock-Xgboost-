@@ -78,7 +78,7 @@ if submit:
     stockdata = stockdata[::-1]  
     stockdata['Change %'] = stockdata['Change %'].str.rstrip('%').astype('float') / 100.0
     check = stockdata.drop(["Date"],axis=1)
-    st.write(check)
+    st.write(len(check.columns))
     pred = clf.predict(check)
     stockdata["Prediction"] = pred
     st.write(stockdata)
