@@ -134,7 +134,7 @@ if submit:
             gridOptions=gridOptions,
 
 
-            theme="dark",
+            theme="alpine",
             #update_mode=GridUpdateMode.MODEL_CHANGED,
             allow_unsafe_jscode=True,
         )
