@@ -106,7 +106,7 @@ if submit:
                         if (params.data.Prediction === 2) {
                             return {
                                 'color': 'white',
-                                'backgroundColor': 'yellow'
+                                'backgroundColor': 'blue'
                             }
                         }
                         if (params.data.Prediction === 3) {
