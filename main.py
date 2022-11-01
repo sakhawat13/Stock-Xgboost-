@@ -90,51 +90,57 @@ if submit:
 
     
     
-#     def aggrid_interactive_table(df: pd.DataFrame):
+    def aggrid_interactive_table(df: pd.DataFrame):
 
-#         """Creates an st-aggrid interactive table based on a dataframe.
-#         Args:
-#         df (pd.DataFrame]): Source dataframe
-#         Returns:
-#         dict: The selected row
-#         """
-#         options = GridOptionsBuilder.from_dataframe(
-#             df, enableRowGroup=True, enableValue=True, enablePivot=True
-#         )
-#         jscode = JsCode("""
-#                     function(params) {
-#                         if (params.data.IndPred === 1) {
-#                             return {
-#                                 'color': 'white',
-#                                 'backgroundColor': 'green'
-#                             }
-#                         }
-#                         if (params.data.IndPred === -1) {
-#                             return {
-#                                 'color': 'white',
-#                                 'backgroundColor': 'red'
-#                             }
-#                         }
-#                     };
-#                     """)  
-#         gridOptions=options.build()
-#         gridOptions['getRowStyle'] = jscode
-#         options.configure_side_bar()
-#         #options.configure_selection("single")
+        """Creates an st-aggrid interactive table based on a dataframe.
+        Args:
+        df (pd.DataFrame]): Source dataframe
+        Returns:
+        dict: The selected row
+        """
+        options = GridOptionsBuilder.from_dataframe(
+            df, enableRowGroup=True, enableValue=True, enablePivot=True
+        )
+        jscode = JsCode("""
+                    function(params) {
+                        if (params.data.Prediction === 2) {
+                            return {
+                                'color': 'white',
+                                'backgroundColor': 'yellow'
+                            }
+                        }
+                        if (params.data.Prediction === 3) {
+                            return {
+                                'color': 'white',
+                                'backgroundColor': 'green'
+                            }
+                        }
+                        if (params.data.Prediction === 0) {
+                            return {
+                                'color': 'white',
+                                'backgroundColor': 'red'
+                            }
+                        }
+                    };
+                    """)  
+        gridOptions=options.build()
+        gridOptions['getRowStyle'] = jscode
+        options.configure_side_bar()
+        #options.configure_selection("single")
 
-#         selection = AgGrid(
-#             df,
-#             enable_enterprise_modules=True,
-#             gridOptions=gridOptions,
+        selection = AgGrid(
+            df,
+            enable_enterprise_modules=True,
+            gridOptions=gridOptions,
 
 
-#             theme="dark",
-#             #update_mode=GridUpdateMode.MODEL_CHANGED,
-#             allow_unsafe_jscode=True,
-#         )
-#         return selection
+            theme="dark",
+            #update_mode=GridUpdateMode.MODEL_CHANGED,
+            allow_unsafe_jscode=True,
+        )
+        return selection
 
-#     selection = aggrid_interactive_table(df=stockdata)
+    selection = aggrid_interactive_table(df=stockdata)
 
 # invert = st.checkbox('Invert ')
 
