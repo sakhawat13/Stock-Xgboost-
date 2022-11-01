@@ -1,4 +1,5 @@
 import pickle
+import xgboost as xgb
 
 
 from ta import add_all_ta_features
@@ -25,7 +26,8 @@ from st_aggrid.shared import JsCode
 
 
 
-model1 = pickle.load(open('Xgboost.sav', 'rb'))
+model_xgb = xgb.Booster()
+model_xgb.load_model("model.json")
 # clf2 = pickle.load(open('classifier_w_indicator_model_reversed.sav', 'rb'))
 
 
@@ -80,7 +82,7 @@ if submit:
     stockdata['Change %'] = stockdata['Change %'].str.rstrip('%').astype('float') / 100.0
     check = stockdata.drop(["Date"],axis=1)
     st.write(len(check.columns))
-    pred = model1.predict(check)
+    pred = model_xgb.predict(check)
     stockdata["Prediction"] = pred
     st.write(stockdata)
     
