@@ -12,4 +12,4 @@ yfinance
 openpyxl
 ta
 xgboost
-XGBClassifier
+
