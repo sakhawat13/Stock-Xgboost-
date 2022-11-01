@@ -84,7 +84,7 @@ if submit:
     st.write(len(check.columns))
     pred = model_xgb.predict(check)
     stockdata["Prediction"] = pred
-    st.write(stockdata)
+#     st.write(stockdata)
     
 
 
