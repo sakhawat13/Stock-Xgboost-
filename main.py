@@ -47,15 +47,15 @@ five = lastfive.strftime ("%d/%m/%Y")
 
 
 
-# st.header("Only Use One of the Dropbox")
-# st.subheader("Cross out previous selection before reusing")
-#st.caption("Some selected value might still show but wont be a problem, you can reselect like normal")
+st.header("Upload a csv file downloaded from Investing.com")
+
+st.caption("You can Drag and drop the file into the box")
 
 from io import StringIO
 
 stockdata = pd.DataFrame()
 
-file = st.file_uploader("Please choose a file")
+file = st.file_uploader("Please choose a csv file")
 
 if file is not None:
 
@@ -73,7 +73,7 @@ if file is not None:
 
 
 submit = st.button("Submit")
-
+st.subheader("Green = Abnormal Profit,  Blue = Players detected,     Black = Normal,   Red = Players exiting ")
 if submit:
     stockdata["Vol."]=stockdata['Vol.'].replace({'K': '*1e3', 'M': '*1e6', '-':'-1'}, regex=True).map(pd.eval).astype(int)
     stockdata = stockdata[::-1]
@@ -84,6 +84,7 @@ if submit:
     st.write(len(check.columns))
     pred = model_xgb.predict(check)
     stockdata["Prediction"] = pred
+    sts = stockdata[["Date","Price","Prediction"]]
 #     st.write(stockdata)
     
 
@@ -142,7 +143,7 @@ if submit:
         )
         return selection
 
-    selection = aggrid_interactive_table(df=stockdata)
+    selection = aggrid_interactive_table(df=sts)
 
 # invert = st.checkbox('Invert ')
 
