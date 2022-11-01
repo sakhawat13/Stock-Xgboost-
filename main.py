@@ -75,6 +75,7 @@ if file is not None:
 submit = st.button("Submit")
 st.subheader("Green = Abnormal Profit,  Blue = Players detected,     Black = Normal,   Red = Players exiting ")
 if submit:
+    stockdata = stockdata[stockdata['Vol.'].notna()]
     stockdata["Vol."]=stockdata['Vol.'].replace({'K': '*1e3', 'M': '*1e6', '-':'-1'}, regex=True).map(pd.eval).astype(int)
     stockdata = stockdata[::-1]
     stockdata = add_all_ta_features(stockdata, open="Open", high="High", low="Low", close="Price", volume="Vol.", fillna=True)
