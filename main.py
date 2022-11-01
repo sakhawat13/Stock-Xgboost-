@@ -21,7 +21,7 @@ from st_aggrid.shared import JsCode
 # In[3]:
 
 
-clf = open("Xgboost.sav",'rb')
+model1 = open("Xgboost.sav",'rb')
 
 
 # clf2 = pickle.load(open('classifier_w_indicator_model_hist_high_crossed.sav', 'rb'))
