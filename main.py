@@ -21,7 +21,7 @@ from st_aggrid.shared import JsCode
 # In[3]:
 
 
-model1 = open("Xgboost.sav",'rb')
+clf = open("Xgboost.sav",'rb')
 
 
 # clf2 = pickle.load(open('classifier_w_indicator_model_hist_high_crossed.sav', 'rb'))
@@ -79,7 +79,7 @@ if submit:
     stockdata['Change %'] = stockdata['Change %'].str.rstrip('%').astype('float') / 100.0
     check = stockdata.drop(["Date"],axis=1)
     # check
-    pred = model1.predict(check)
+    pred = clf.predict(check)
     stockdata["Prediction"] = pred
     st.write(stockdata)
     
@@ -87,51 +87,51 @@ if submit:
 
     
     
-    def aggrid_interactive_table(df: pd.DataFrame):
+#     def aggrid_interactive_table(df: pd.DataFrame):
 
-        """Creates an st-aggrid interactive table based on a dataframe.
-        Args:
-        df (pd.DataFrame]): Source dataframe
-        Returns:
-        dict: The selected row
-        """
-        options = GridOptionsBuilder.from_dataframe(
-            df, enableRowGroup=True, enableValue=True, enablePivot=True
-        )
-        jscode = JsCode("""
-                    function(params) {
-                        if (params.data.IndPred === 1) {
-                            return {
-                                'color': 'white',
-                                'backgroundColor': 'green'
-                            }
-                        }
-                        if (params.data.IndPred === -1) {
-                            return {
-                                'color': 'white',
-                                'backgroundColor': 'red'
-                            }
-                        }
-                    };
-                    """)  
-        gridOptions=options.build()
-        gridOptions['getRowStyle'] = jscode
-        options.configure_side_bar()
-        #options.configure_selection("single")
+#         """Creates an st-aggrid interactive table based on a dataframe.
+#         Args:
+#         df (pd.DataFrame]): Source dataframe
+#         Returns:
+#         dict: The selected row
+#         """
+#         options = GridOptionsBuilder.from_dataframe(
+#             df, enableRowGroup=True, enableValue=True, enablePivot=True
+#         )
+#         jscode = JsCode("""
+#                     function(params) {
+#                         if (params.data.IndPred === 1) {
+#                             return {
+#                                 'color': 'white',
+#                                 'backgroundColor': 'green'
+#                             }
+#                         }
+#                         if (params.data.IndPred === -1) {
+#                             return {
+#                                 'color': 'white',
+#                                 'backgroundColor': 'red'
+#                             }
+#                         }
+#                     };
+#                     """)  
+#         gridOptions=options.build()
+#         gridOptions['getRowStyle'] = jscode
+#         options.configure_side_bar()
+#         #options.configure_selection("single")
 
-        selection = AgGrid(
-            df,
-            enable_enterprise_modules=True,
-            gridOptions=gridOptions,
+#         selection = AgGrid(
+#             df,
+#             enable_enterprise_modules=True,
+#             gridOptions=gridOptions,
 
 
-            theme="dark",
-            #update_mode=GridUpdateMode.MODEL_CHANGED,
-            allow_unsafe_jscode=True,
-        )
-        return selection
+#             theme="dark",
+#             #update_mode=GridUpdateMode.MODEL_CHANGED,
+#             allow_unsafe_jscode=True,
+#         )
+#         return selection
 
-    selection = aggrid_interactive_table(df=stockdata)
+#     selection = aggrid_interactive_table(df=stockdata)
 
 # invert = st.checkbox('Invert ')
 
