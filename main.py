@@ -119,10 +119,10 @@ if submit:
                         if (params.data.Prediction === 2) {
                             return {
                                 'color': 'white',
-                                'backgroundColor': 'blue'
+                                
                             }
                         }
-                        if (params.data.Prediction === 3) {
+                        if (params.data.Profit === 1) {
                             return {
                                 'color': 'white',
                                 'backgroundColor': 'green'
@@ -131,7 +131,7 @@ if submit:
                         if (params.data.Prediction === 0) {
                             return {
                                 'color': 'white',
-                                'backgroundColor': 'red'
+                                
                             }
                         }
                     };
