@@ -116,13 +116,8 @@ if submit:
         )
         jscode = JsCode("""
                     function(params) {
-                        if (params.data.Prediction === 2) {
-                            return {
-                                'color': 'white',
-                                
-                            }
-                        }
-                        if (params.data.Profit == 1) {
+                        
+                        if (params.data.Profit === 1) {
                             return {
                                 'color': 'white',
                                 'backgroundColor': 'green'
