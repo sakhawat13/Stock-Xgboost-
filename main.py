@@ -122,7 +122,7 @@ if submit:
                                 
                             }
                         }
-                        if (params.data.Profit === 1) {
+                        if (params.data.Profit == 1) {
                             return {
                                 'color': 'white',
                                 'backgroundColor': 'green'
