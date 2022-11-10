@@ -29,13 +29,13 @@ from st_aggrid.shared import JsCode
 model_xgb = xgb.XGBClassifier()
 model1 = xgb.XGBClassifier()
 model2 = xgb.XGBClassifier()
-model1.load_model("model_unspecialized.json")
-model2.load_model("model.json")
-model_xgb = model1
-model = st.checkbox('Specialized model')
-model_xgb.load_model("model_unspecialized.json")
-if model:
-    model_xgb = model2
+model1.load_model("model_non_profit.json")
+model2.load_model("model_profit.json")
+# model_xgb = model1
+# model = st.checkbox('Specialized model')
+# model_xgb.load_model("model_unspecialized.json")
+# if model:
+#     model_xgb = model2
 # clf2 = pickle.load(open('classifier_w_indicator_model_reversed.sav', 'rb'))
 
 
@@ -87,14 +87,16 @@ if submit:
     stockdata["Vol."]=stockdata['Vol.'].replace({'K': '*1e3', 'M': '*1e6', '-':'-1'}, regex=True).map(pd.eval).astype(int)
     stockdata = stockdata[::-1]
     stockdata = add_all_ta_features(stockdata, open="Open", high="High", low="Low", close="Price", volume="Vol.", fillna=True)
-      
+    stockdata["VolAvgNDays"] = stockdata["Vol."].rolling(20).mean()  
     stockdata['Change %'] = stockdata['Change %'].str.rstrip('%').astype('float') / 100.0
     check = stockdata.drop(["Date"],axis=1)
     st.write(len(check.columns))
-    pred = model_xgb.predict(check)
+    pred = model1.predict(check)
+    prof = model2.predict(check)
     stockdata["Prediction"] = pred
+    stockdata["Profit"] = prof
     stockdata = stockdata[::-1]
-    sts = stockdata[["Date","Price","Prediction"]]
+    sts = stockdata[["Date","Price","Prediction","Profit"]]
 #     st.write(stockdata)
     
 
